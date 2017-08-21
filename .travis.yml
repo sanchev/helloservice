@@ -1,0 +1,14 @@
+language: java
+
+cache:
+ directories:
+  - $HOME/.m2
+
+before_script:
+ - echo "Starting build"
+ 
+script:
+ - mvn clean compile exec:java
+ 
+after_script:
+ - echo "Script finished"

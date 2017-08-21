@@ -1,5 +1,8 @@
 package com.sanchev;
 
+import com.sanchev.base.ContactService;
+import com.sanchev.base.DBService;
+import com.sanchev.db.DBServiceImpl;
 import com.sanchev.servlets.ContactServiceImpl;
 import com.sanchev.servlets.ContactServlet;
 import org.apache.logging.log4j.LogManager;
@@ -16,7 +19,11 @@ public class App {
         Server server = new Server(8080);
 
         ServletContextHandler handler = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        handler.addServlet(new ServletHolder(new ContactServlet(new ContactServiceImpl())), "/hello/contacts");
+
+        DBService dbService = new DBServiceImpl();
+        ContactService contactService = new ContactServiceImpl(dbService);
+
+        handler.addServlet(new ServletHolder(new ContactServlet(contactService)), "/hello/contacts");
         server.setHandler(handler);
 
         server.start();

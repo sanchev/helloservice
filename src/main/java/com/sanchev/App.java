@@ -1,6 +1,7 @@
 package com.sanchev;
 
-import com.sanchev.servlets.ContactsServlet;
+import com.sanchev.servlets.ContactServiceImpl;
+import com.sanchev.servlets.ContactServlet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.jetty.server.Server;
@@ -15,12 +16,16 @@ public class App {
         Server server = new Server(8080);
 
         ServletContextHandler handler = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        handler.addServlet(new ServletHolder(new ContactsServlet()), "/hello/contacts");
+        handler.addServlet(new ServletHolder(new ContactServlet(new ContactServiceImpl())), "/hello/contacts");
         server.setHandler(handler);
 
         server.start();
         LOGGER.info("Server started");
-        server.join();
+        //server.join();
+        Thread.sleep(5000);
+        server.stop();
+        LOGGER.info("Server stopped");
+        LOGGER.info("App finished");
     }
 
 }

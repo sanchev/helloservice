@@ -5,5 +5,5 @@ import com.sanchev.Contact;
 import java.util.Collection;
 
 public interface ContactService {
-    Collection<Contact> getUsers(String regex);
+    Collection<Contact> getFilteredContacts(String regex);
 }

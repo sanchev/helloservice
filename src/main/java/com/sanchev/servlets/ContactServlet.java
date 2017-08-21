@@ -22,7 +22,7 @@ public class ContactServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nameFilter = request.getParameter("nameFilter");
 
-        Collection<Contact> contacts = contactService.getUsers(nameFilter);
+        Collection<Contact> contacts = contactService.getFilteredContacts(nameFilter);
         if (contacts != null && !contacts.isEmpty()) {
             String json = new Gson().toJson(contacts);
             response.setContentType("application/json");

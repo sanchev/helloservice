@@ -20,17 +20,19 @@ public class Contact {
     @Column(name = "name")
     private String name;
 
+    public Contact() {}
+
     public Contact(long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    @SuppressWarnings("unused")
+    @SuppressWarnings("UnusedDeclaration")
     public long getId() {
         return id;
     }
 
-    @SuppressWarnings("unused")
+    @SuppressWarnings("UnusedDeclaration")
     public void setId(long id) {
         this.id = id;
     }
@@ -39,7 +41,7 @@ public class Contact {
         return name;
     }
 
-    @SuppressWarnings("unused")
+    @SuppressWarnings("UnusedDeclaration")
     public void setName(String name) {
         this.name = name;
     }

@@ -1,14 +1,18 @@
-package com.sanchev.servlets;
+package com.sanchev.frontend.servlets;
 
 import com.sanchev.Contact;
 import com.sanchev.base.ContactService;
 import com.sanchev.base.DBService;
+import com.sanchev.db.DBServiceImpl;import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.regex.Pattern;
 
 public class ContactServiceImpl implements ContactService {
+    private static final Logger LOGGER = LogManager.getLogger(DBServiceImpl.ContactServiceImpl.class.getName());
+
     private final DBService dbService;
 
     public ContactServiceImpl(DBService dbService) {
@@ -16,12 +20,16 @@ public class ContactServiceImpl implements ContactService {
     }
 
     public Collection<Contact> getFilteredContacts(String regex) {
+        LOGGER.info(String.format("regex: %s", regex));
         Collection<Contact> contacts = new ArrayList<Contact>();
         Pattern pattern = Pattern.compile(regex);
-        for (Contact contact : dbService.getAllContacts()) {
+        Collection<Contact> allContacts = dbService.getAllContacts();
+        LOGGER.info(String.format("All contacts from db: %s", allContacts));
+        for (Contact contact : allContacts) {
             if (!pattern.matcher(contact.getName()).matches())
                 contacts.add(contact);
         }
+        LOGGER.info(String.format("Filtered contacts: %s", contacts));
         return contacts;
     }
 }

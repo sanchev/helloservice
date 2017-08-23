@@ -1,4 +1,4 @@
-package com.sanchev;
+package com.sanchev.base;
 
 import com.google.gson.annotations.SerializedName;
 

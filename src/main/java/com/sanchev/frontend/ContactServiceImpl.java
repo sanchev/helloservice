@@ -1,9 +1,9 @@
-package com.sanchev.frontend.servlets;
+package com.sanchev.frontend;
 
-import com.sanchev.Contact;
+import com.sanchev.base.Contact;
 import com.sanchev.base.ContactService;
 import com.sanchev.base.DBService;
-import com.sanchev.db.DBServiceImpl;import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.regex.Pattern;
 
 public class ContactServiceImpl implements ContactService {
-    private static final Logger LOGGER = LogManager.getLogger(DBServiceImpl.ContactServiceImpl.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger(ContactServiceImpl.class.getName());
 
     private final DBService dbService;
 

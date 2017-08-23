@@ -1,6 +1,10 @@
 package com.sanchev.frontend.servlets;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.sanchev.base.Contact;
 import com.sanchev.base.ContactService;
 
@@ -19,17 +23,20 @@ public class ContactServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nameFilter = request.getParameter("nameFilter");
-
-        Collection<Contact> contacts = contactService.getFilteredContacts(nameFilter);
-        if (contacts != null && !contacts.isEmpty()) {
-            String json = new Gson().toJson(contacts);
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            response.getWriter().write(json);
-            response.getWriter().flush();
-            response.setStatus(HttpServletResponse.SC_OK);
+        if (nameFilter != null) {
+            Collection<Contact> contacts = contactService.getFilteredContacts(nameFilter);
+            if (contacts != null && !contacts.isEmpty()) {
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                JsonObject json = new JsonObject();
+                json.add("contacts", new Gson().toJsonTree(contacts));
+                response.getWriter().write(json.toString());
+                response.getWriter().flush();
+                response.setStatus(HttpServletResponse.SC_OK);
+            } else
+                response.setStatus(HttpServletResponse.SC_NO_CONTENT);
         } else
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
     }

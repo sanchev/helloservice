@@ -7,8 +7,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "contacts")
 public class Contact {
-    static final String ID_TAG = "id";
-    static final String NAME_TAG = "name";
+    private static final String ID_TAG = "id";
+    private static final String NAME_TAG = "name";
 
     @SerializedName(ID_TAG)
     @Id
@@ -25,10 +25,12 @@ public class Contact {
         this.name = name;
     }
 
+    @SuppressWarnings("unused")
     public long getId() {
         return id;
     }
 
+    @SuppressWarnings("unused")
     public void setId(long id) {
         this.id = id;
     }
@@ -37,6 +39,7 @@ public class Contact {
         return name;
     }
 
+    @SuppressWarnings("unused")
     public void setName(String name) {
         this.name = name;
     }
@@ -64,6 +67,6 @@ public class Contact {
             return false;
 
         Contact contact = (Contact) obj;
-        return id == contact.id && (name == contact.getName() || (name != null && name.equals(contact.getName())));
+        return id == contact.id && (name != null && name.equals(contact.getName()));
     }
 }

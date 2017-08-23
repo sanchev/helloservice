@@ -13,8 +13,11 @@ import java.util.ResourceBundle;
 
 public class DBServiceImpl implements DBService {
 
+    public enum DBType {H2, MySQL, PostgreSQL}
+
     private static final String HIBERNATE_SHOW_SQL = "false";
-    private static final String HIBERNATE_HBM2DDL_AUTO = "create";
+    private static final String HIBERNATE_HBM2DDL_AUTO = "validate";
+
     private final SessionFactory sessionFactory;
 
     public DBServiceImpl() {
@@ -22,7 +25,6 @@ public class DBServiceImpl implements DBService {
         sessionFactory = createSessionFactory(configuration);
     }
 
-    @SuppressWarnings("UnusedDeclaration")
     public DBServiceImpl(DBType dbType, String username, String password, String url) {
         Configuration configuration = getConfiguration(dbType, username, password, url);
         sessionFactory = createSessionFactory(configuration);
@@ -98,6 +100,4 @@ public class DBServiceImpl implements DBService {
         session.close();
         return contacts;
     }
-
-    enum DBType {H2, MySQL, PostgreSQL}
 }

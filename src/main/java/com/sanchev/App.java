@@ -3,8 +3,8 @@ package com.sanchev;
 import com.sanchev.base.ContactService;
 import com.sanchev.base.DBService;
 import com.sanchev.db.DBServiceImpl;
-import com.sanchev.servlets.ContactServiceImpl;
-import com.sanchev.servlets.ContactServlet;
+import com.sanchev.frontend.ContactServiceImpl;
+import com.sanchev.frontend.servlets.ContactServlet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.jetty.server.Server;
@@ -28,11 +28,7 @@ public class App {
 
         server.start();
         LOGGER.info("Server started");
-        //server.join();
-        Thread.sleep(5000);
-        server.stop();
-        LOGGER.info("Server stopped");
-        LOGGER.info("App finished");
+        server.join();
     }
 
 }

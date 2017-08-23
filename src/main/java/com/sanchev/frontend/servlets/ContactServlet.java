@@ -1,7 +1,7 @@
-package com.sanchev.servlets;
+package com.sanchev.frontend.servlets;
 
 import com.google.gson.Gson;
-import com.sanchev.Contact;
+import com.sanchev.base.Contact;
 import com.sanchev.base.ContactService;
 
 import javax.servlet.ServletException;

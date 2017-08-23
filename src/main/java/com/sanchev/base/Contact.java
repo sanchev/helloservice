@@ -5,10 +5,10 @@ import com.google.gson.annotations.SerializedName;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "contacts")
 public class Contact {
-    static final String ID_TAG = "contact_id";
-    static final String NAME_TAG = "contact_name";
+    static final String ID_TAG = "id";
+    static final String NAME_TAG = "name";
 
     @SerializedName(ID_TAG)
     @Id

@@ -1,10 +1,7 @@
 package com.sanchev.frontend.servlets;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.sanchev.base.Contact;
 import com.sanchev.base.ContactService;
 

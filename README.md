@@ -14,14 +14,14 @@ REST сервис **/hello/contacts?nameFilter=val** возвращает кон
 
 ## База данных
 
-Для настройки базы данных используется файл /resources/db.properties
+Для настройки базы данных используется файл **/resources/db.properties**
 
 Возможные варианты:
 * [H2](https://h2database.com/)
 * [MySQL](https://www.mysql.com/)
 * [PostgreSQL](https://www.postgresql.org/)
 
-База данных должна иметь таблицу contacts с двумя полями:
+База данных должна иметь таблицу **contacts** с двумя полями:
 * id - 64 bit integer
 * name - varchar
 

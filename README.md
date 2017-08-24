@@ -8,6 +8,12 @@ REST сервис **/hello/contacts?nameFilter=val** возвращает кон
 
 Параметр nameFilter обязателен. В него передаётся регулярное выражение. В возвращаемых данных нет записей, в которых contacts.name совпадает с регулярным выражением.
 
+*Пример запроса*
+
+/hello/contacts?nameFilter=^T.*$
+
+Запрос возвращает контакты из БД в json формате, которые НЕ начинаются на T
+
 ## WEB Sever
 
 * [Jetty](https://www.eclipse.org/jetty/)

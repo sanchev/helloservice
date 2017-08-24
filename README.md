@@ -3,8 +3,14 @@
 </p>
 
 # HelloService Project
-еуые
-Service that return contacts (json) from the database.
+
+REST сервис **/hello/contacts?nameFilter=val** возвращает контакты из базы данных в json формате.
+
+Параметр nameFilter обязателен. В него передаётся регулярное выражение. В возвращаемых данных нет записей, в которых contacts.name совпадает с регулярным выражением.
+
+## WEB Sever
+
+* [Jetty](https://www.eclipse.org/jetty/)
 
 ## База данных
 

@@ -25,6 +25,8 @@ public class ContactServiceImpl implements ContactService {
         Pattern pattern = Pattern.compile(regex);
         Collection<Contact> allContacts = dbService.getAllContacts();
         LOGGER.info(String.format("All contacts from db: %s", allContacts));
+        if (allContacts == null)
+            return null;
         for (Contact contact : allContacts) {
             if (!pattern.matcher(contact.getName()).matches())
                 contacts.add(contact);

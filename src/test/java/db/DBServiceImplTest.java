@@ -4,6 +4,7 @@ import com.sanchev.base.Contact;
 import com.sanchev.db.DBServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.HibernateException;
 import org.junit.Test;
 
 import java.util.Collection;
@@ -27,5 +28,14 @@ public class DBServiceImplTest {
         LOGGER.info(String.format("Expected all contacts: %s", contacts));
 
         assertEquals(contacts, expectedContacts);
+    }
+
+    @Test(expected = HibernateException.class)
+    public void testGetAllContacts_EXCEPTION() {
+        LOGGER.info("testGetAllContacts_EXCEPTION()");
+
+        //no url
+        DBServiceImpl dbService = new DBServiceImpl(DBServiceImpl.DBType.H2, "test", "test", "");
+        Collection<Contact> contacts = dbService.getAllContacts();
     }
 }

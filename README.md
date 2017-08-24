@@ -9,6 +9,7 @@ REST сервис **/hello/contacts?nameFilter=val** возвращает кон
 Параметр nameFilter обязателен. В него передаётся регулярное выражение. В возвращаемых данных нет записей, в которых contacts.name совпадает с регулярным выражением.
 
 *Пример запроса:*
+
 /hello/contacts?nameFilter=^T.*$
 
 Запрос возвращает контакты из БД в json формате, которые НЕ начинаются на T
@@ -16,6 +17,8 @@ REST сервис **/hello/contacts?nameFilter=val** возвращает кон
 ## WEB Sever
 
 * [Jetty](https://www.eclipse.org/jetty/)
+
+По умолчанию выбран порт **8080**
 
 ## База данных
 
@@ -37,6 +40,13 @@ REST сервис **/hello/contacts?nameFilter=val** возвращает кон
 ## Сборка
 
 * [Maven](https://maven.apache.org/)
+
+## Запуск на локальном компьетере
+
+1. Создать H2(MySQL, PostgreSQL) БД
+2. Склонировать данный репозиторий
+3. Настроить файл **/resources/db.properties** для доступа к созданной локальной базе
+4. В терминале перейти в созданный каталог и выполнить команду **mvn clean compile exec:java**
 
 ## Автор
 

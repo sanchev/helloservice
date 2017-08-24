@@ -48,6 +48,10 @@ REST сервис **/hello/contacts?nameFilter=val** возвращает кон
 3. Настроить файл **/resources/db.properties** для доступа к созданной локальной базе
 4. В терминале перейти в созданный каталог и выполнить команду **mvn clean compile exec:java**
 
+*Пример запроса:*
+
+http://localhost:8080/hello/contacts?nameFilter=^T.*$
+
 ## Автор
 
 * **sanchev**

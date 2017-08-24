@@ -2,6 +2,8 @@ package com.sanchev.db;
 
 import com.sanchev.base.Contact;
 import com.sanchev.base.DBService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,6 +15,8 @@ import java.util.Collection;
 import java.util.ResourceBundle;
 
 public class DBServiceImpl implements DBService {
+
+    private static final Logger LOGGER = LogManager.getLogger(DBService.class.getName());
 
     public enum DBType {H2, MySQL, PostgreSQL}
 
@@ -100,6 +104,7 @@ public class DBServiceImpl implements DBService {
             Collection<Contact> contacts = session.createCriteria(Contact.class).list();
             return contacts;
         } catch (HibernateException e) {
+            LOGGER.error(e.getMessage());
             return null;
         }
     }

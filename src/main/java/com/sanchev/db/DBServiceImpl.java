@@ -4,24 +4,24 @@ import com.sanchev.base.Contact;
 import com.sanchev.base.DBService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.*;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ResourceBundle;
 
 public class DBServiceImpl implements DBService {
 
-    private static final Logger LOGGER = LogManager.getLogger(DBService.class.getName());
-
     public enum DBType {H2, MySQL, PostgreSQL}
+
+    private static final Logger LOGGER = LogManager.getLogger(DBService.class.getName());
 
     private static final String HIBERNATE_SHOW_SQL = "false";
     private static final String HIBERNATE_HBM2DDL_AUTO = "validate";
+    private static final int FETCH_SIZE = 100;
 
     private final SessionFactory sessionFactory;
 
@@ -100,8 +100,18 @@ public class DBServiceImpl implements DBService {
     }
 
     public Collection<Contact> getAllContacts() {
-        try (Session session = sessionFactory.openSession()) {
-            Collection<Contact> contacts = session.createCriteria(Contact.class).list();
+        try (
+                Session session = sessionFactory.openSession();
+                ScrollableResults scrollableResults = session.createCriteria(Contact.class)
+                        .setReadOnly(true)
+                        .setFetchSize(FETCH_SIZE)
+                        .scroll(ScrollMode.FORWARD_ONLY)
+        ) {
+            Collection<Contact> contacts = new ArrayList<>();
+            while (scrollableResults.next()) {
+                Contact contact = (Contact) scrollableResults.get(0);
+                contacts.add(contact);
+            }
             return contacts;
         } catch (HibernateException e) {
             LOGGER.error(e.getMessage());

@@ -41,7 +41,7 @@ REST сервис **/hello/contacts?nameFilter=val** возвращает кон
 
 * [Maven](https://maven.apache.org/)
 
-## Запуск на локальном компьетере
+## Запуск
 
 1. Создать H2(MySQL, PostgreSQL) БД
 2. Склонировать данный репозиторий

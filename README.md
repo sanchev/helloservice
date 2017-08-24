@@ -19,8 +19,9 @@ Service that return contacts (json) from the database.
 * id - 64 bit integer
 * name - varchar
 
-База данных по умолчанию: h2db.mv.db
 База данных для тестов: h2db_test.mv.db
+
+База данных по умолчанию: h2db.mv.db
 
 ## Сборка
 

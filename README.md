@@ -18,7 +18,7 @@ REST сервис **/hello/contacts?nameFilter=val** возвращает кон
 
 * [Jetty](https://www.eclipse.org/jetty/)
 
-По умолчанию выбран порт **8080**
+Попрт о умолчанию: **8080**
 
 ## База данных
 

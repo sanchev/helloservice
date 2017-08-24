@@ -2,6 +2,7 @@ package com.sanchev.db;
 
 import com.sanchev.base.Contact;
 import com.sanchev.base.DBService;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -95,9 +96,11 @@ public class DBServiceImpl implements DBService {
     }
 
     public Collection<Contact> getAllContacts() {
-        Session session = sessionFactory.openSession();
-        Collection<Contact> contacts = session.createCriteria(Contact.class).list();
-        session.close();
-        return contacts;
+        try (Session session = sessionFactory.openSession()) {
+            Collection<Contact> contacts = session.createCriteria(Contact.class).list();
+            return contacts;
+        } catch (HibernateException e) {
+            return null;
+        }
     }
 }
